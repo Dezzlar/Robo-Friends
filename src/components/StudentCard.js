@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonIcon } from '@ionic/react';
+
 
 
 
@@ -27,9 +27,6 @@ const StudentCard = (props) => {
 				<div className = 'f4 b animate__animated animate__bounce'>
 					<p style ={props.online ? status.online  : status.offline}>{props.online ? 'Online': 'Offline'}</p>
 					<p2 style = {{color: 'black'}}>{props.email}</p2>
-					<div id='man-outline'>
-						<IonIcon icon =""/>
-					</div>
 				</div>
 			 </div>
 		);
