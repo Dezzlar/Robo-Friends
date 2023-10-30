@@ -12,7 +12,7 @@ import '../App.css';
 	
 	const [studentList, setStudentList] = useState([]);
 	const [searchfield, setSearchField] = useState('');
-	const [count, setCount] = useState(0);
+	
 
 	
 	
@@ -24,9 +24,8 @@ import '../App.css';
 		.then(users => {
 		setStudentList(users)
 		})
-		console.log(count);
-
-	}, [count])
+		
+	})
 
 
 	
@@ -49,7 +48,6 @@ import '../App.css';
 
 			<Header/>
 			<div className ='pa2 ma2'>
-			<button onClick={() => setCount(count + 1)}>Click me!!</button>
 				<SearchBox searchChange = {onSearchChange}/>
 			</div>
 			<div className = 'pa2 ma2'>
