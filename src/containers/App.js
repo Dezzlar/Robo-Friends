@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import StudentCardArray from '../components/StudentCardArray';
 import Header from '../components/Header';
 import SearchBox from '../components/SearchBox';
@@ -8,32 +8,36 @@ import '../App.css';
 
 
 
-class App extends Component{
-	constructor()
-	{
-		super()
-		this.state = {
-			studentList: [],
-			searchfield: ''
-		}
-	}
+	function App() {
+	
+	const [studentList, setStudentList] = useState([]);
+	const [searchfield, setSearchField] = useState('');
+	const [count, setCount] = useState(0);
+
+	
+	
 	
 
-	componentDidMount(){
+    useEffect(()=> {
 		fetch('https://jsonplaceholder.typicode.com/users')
 		.then(response => response.json())
 		.then(users => {
-			this.setState({studentList: users})
+		setStudentList(users)
 		})
-		
-	}
-	onSearchChange = (event) => {
-		this.setState({searchfield:event.target.value})
+		console.log(count);
+
+	}, [count])
+
+
+	
+
+	const onSearchChange = (event) => {
+		setSearchField(event.target.value);
 	};
 
 
-	render(){
-		const {studentList, searchfield} = this.state;
+	
+		
 		const filteredList = studentList.filter(studentList=> {
 			return studentList.name.toLowerCase().includes(searchfield.toLowerCase());
 		})
@@ -45,7 +49,8 @@ class App extends Component{
 
 			<Header/>
 			<div className ='pa2 ma2'>
-				<SearchBox searchChange = {this.onSearchChange}/>
+			<button onClick={() => setCount(count + 1)}>Click me!!</button>
+				<SearchBox searchChange = {onSearchChange}/>
 			</div>
 			<div className = 'pa2 ma2'>
 			</div>
@@ -60,7 +65,6 @@ class App extends Component{
 
 	
 
-}
 
 
 
